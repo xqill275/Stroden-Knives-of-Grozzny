@@ -1,0 +1,4 @@
+Identifier	Character	Dialogue	Filename	Line Number	Ren'Py Script
+start_a170b500	e	You've created a new Ren'Py game.	game/script.rpy	28	e "[what]"
+start_f41f55d7	e	Once you add a story, pictures, and music, you can release it to the world!	game/script.rpy	30	e "[what]"
+start_5ff98d96	t	I'm a test character.	game/script.rpy	32	t "[what]"

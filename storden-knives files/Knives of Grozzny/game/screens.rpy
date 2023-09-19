@@ -289,9 +289,11 @@ screen navigation():
 
     vbox:
         style_prefix "navigation"
-
-        xpos gui.navigation_xpos
-        yalign 0.5
+        if renpy.get_screen("main_menu"):
+            xalign 0.5
+        else:
+            xoffset 60
+        yalign 0.8
 
         spacing gui.navigation_spacing
 
@@ -307,7 +309,7 @@ screen navigation():
 
         textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Options") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -316,13 +318,6 @@ screen navigation():
         elif not main_menu:
 
             textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
@@ -340,6 +335,7 @@ style navigation_button:
 
 style navigation_button_text:
     properties gui.button_text_properties("navigation_button")
+    xalign 0.5
 
 
 ## Main Menu screen ############################################################
@@ -385,7 +381,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    #background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -422,6 +418,11 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     else:
         add gui.game_menu_background
 
+
+    if renpy.get_screen("load"):
+        add "gui/sub_menu_bg.png"
+    elif renpy.get_screen("preferences"):
+        add "gui/sub_menu_bg.png"
     frame:
         style "game_menu_outer_frame"
 
